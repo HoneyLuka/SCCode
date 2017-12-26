@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "SCBaseState.h"
 
+@class SCStateEngine;
+typedef void(^SCStateEngineCallback)(SCStateEngine *engine);
+
 @interface SCStateEngine : NSObject
 
 @property (nonatomic, strong, readonly) __kindof SCBaseState *currentState;
@@ -17,6 +20,8 @@
  Default is NO.
  */
 @property (nonatomic, assign) BOOL ignoreSameState;
+
+@property (nonatomic, copy) SCStateEngineCallback didChangeStateCallback;
 
 - (void)changeStateWithEnum:(NSUInteger)stateEnum;
 

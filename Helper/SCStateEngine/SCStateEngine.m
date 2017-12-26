@@ -59,6 +59,10 @@
     
     // did enter
     [state didEnterState:self];
+    
+    if (self.didChangeStateCallback) {
+        self.didChangeStateCallback(self);
+    }
 }
 
 - (void)addState:(__kindof SCBaseState *)state
