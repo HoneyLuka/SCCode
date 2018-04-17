@@ -21,6 +21,10 @@
  */
 - (void)tabBarDidSelectAgain:(SCTabBar *)tabBar;
 
+- (void)tabBar:(SCTabBar *)tabBar
+customLayoutWithItemViews:(NSArray<SCTabBarItemView *> *)itemViews
+ containerView:(UIView *)containerView;
+
 @end
 
 @interface SCTabBar : UIView

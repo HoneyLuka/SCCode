@@ -85,16 +85,20 @@
            forControlEvents:UIControlEventTouchUpInside];
     }
     
-    [itemViews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal
-                           withFixedSpacing:0
-                                leadSpacing:0
-                                tailSpacing:0];
-    
-    [itemViews mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self.contentView);
-    }];
-    
     self.itemViews = itemViews;
+    
+    if ([self.delegate respondsToSelector:@selector(tabBar:customLayoutWithItemViews:containerView:)]) {
+        [self.delegate tabBar:self customLayoutWithItemViews:itemViews containerView:self.contentView];
+    } else {
+        [itemViews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal
+                               withFixedSpacing:0
+                                    leadSpacing:0
+                                    tailSpacing:0];
+        
+        [itemViews mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.equalTo(self.contentView);
+        }];
+    }
     
     [self setSelectIndex:0];
 }
